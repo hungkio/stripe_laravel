@@ -56,6 +56,7 @@
         const clientSecret = cardButton.dataset.secret;
 
         cardButton.addEventListener('click', async (e) => {
+            e.preventDefault()
             const { setupIntent, error } = await stripe.confirmCardSetup(
                 clientSecret, {
                     payment_method: {
@@ -69,8 +70,8 @@
                 alert(error.message)
                 // Display "error.message" to the user...
             } else {
+                alert("Cập nhật phương thức thanh toán thành công")
                 $('form').submit()
-                // alert("Cập nhật phương thức thanh toán thành công")
                 // The card has been verified successfully...
             }
         });
